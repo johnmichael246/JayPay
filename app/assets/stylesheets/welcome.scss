@@ -1,0 +1,27 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login {
+    background-color: rgba(255,255,255,.5);
+    padding: 20px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.title, .subtitle {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.subtitle {
+    font-size: 1.5em;
+}
+
+
+
+.sticky {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}

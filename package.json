@@ -1,0 +1,7 @@
+{
+  "name": "JayPay",
+  "private": true,
+  "dependencies": {
+    "materialize-css": "^0.100.0"
+  }
+}

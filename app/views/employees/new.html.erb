@@ -1,0 +1,62 @@
+<h6> this is the new employee page </h6>
+    <nav>
+        <div class="nav-wrapper blue-grey accent-2">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="sass.html">Information</a></li>
+                <li><a href="badges.html">Employment</a></li>
+                <li><a href="collapsible.html">Pay</a></li>
+                <li><a href="collapsible.html">Taxes & Excemptions</a></li>
+            </ul>
+        </div>
+    </nav>
+    <p class="subheading">New Employee Information</p>
+<%= form_for @employee do |f| %>
+  <% if @employee.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @employee.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="row">
+    <p class="subber-heading"> Name </p>
+        <div class="input-field col s2 offset-s4">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name %>
+        </div>
+        <div class="input-field col s2" >
+            <%= f.label :middle_i %>
+            <%= f.text_field :middle_i %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name %>
+        </div>
+    </div>
+    <div class="row">
+        <p class="subber-heading"> Address </p>
+        <div class="input-field col s6 offset-s4">
+            <%= f.label :street_address %>
+            <%= f.text_field :street_address %>
+        </div>
+        <div class="input-field col s4 offset-s4">
+            <%= f.label :city %>
+            <%= f.text_field :city %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :state %>
+            <%= f.text_field :state %>
+        </div>
+    </div>
+        <div class="row">
+                <p class="subber-heading"> Name </p>
+                <div class="input-field offset-s6 col s2">
+                    <%= f.label :gender %>
+                    <%= f.text_field :gender %>
+                </div>
+        </div>
+    <div class="actions"><%= f.submit %></div>
+<% end %>
