@@ -1,10 +1,8 @@
-<h2> Employees </h2>
+<h2 class="col s4"> Employee Overview </h2>
 <hr>
-<a href="/employees/new" class="btn-floating btn waves-effect waves-light green right">
-    <i class="material-icons">&plus;</i>
-</a>
-
-<table class = "highlight centered responsive-table">
+<div class="container">
+    <a href="/employees/new" class="waves-effect waves-light btn green right">&plus; Employee</a>
+    <table class = "bordered centered responsive-table">
     <thead>
         <tr>
             <th> First Name</th>
@@ -21,12 +19,22 @@
                     <td> <%= emp.last_name %> </td>
                     <td> $<%= emp.rate %> </td>
                     <td> <%= emp.paid_by %> </td>
-                    <td> <%=emp.status %> </td>
-                    <td class="waves-effect waves-light btn floating"><%=link_to 'Delete Employee', emp, method: :delete, data: {confirm: "WARNING! Employees should be archived with status-inactive, deleting an employee will erase all records of the employee"} %></td>
-                    <td></td>
-                    <td class="waves-effect waves-light btn floating yellow"><%=link_to 'Edit Employee', edit_employee_path(emp) %></td>
-                    
+                    <td> <% if emp.status == true %>
+                            <%=emp.status = 'active' %>
+                            <%else%> 
+                        <%end%></td>
+                    <td>
+                        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Options</a>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><%=link_to 'Delete', emp, method: :delete, data: {confirm: "WARNING! Employees should be archived with status-inactive, deleting an employee will erase all records of the employee"} %></li>
+                            <li><%=link_to 'Edit', edit_employee_path(emp) %></li>
+    <li class="divider"></li>
+    
+                        </ul>
+                    </td>
                 </tr>
             </tbody>
         <% end %>
 </table>
+</div>
+</div>

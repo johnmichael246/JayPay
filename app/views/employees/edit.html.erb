@@ -1,1 +1,132 @@
-<h1> this is the edit page <h1>
+<div class="container">
+<h2 class="text-shade"> Edit Employee </h2>
+    <nav>
+        <div class="nav-wrapper deep-orange accent-1">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#information">&nbsp;Information &nbsp;&nbsp;&nbsp;|</a>|</li>
+                <li><a href="#employment">Employment &nbsp;&nbsp;|</a></li>
+                <li><a href="#pay">Pay &nbsp;&nbsp;&nbsp;|</a></li>
+                <li><a href="#taxes">Taxes & Exemptions</a></li>
+            </ul>
+        </div>
+    </nav>
+    <p class="subheading">Employee Information</p>
+<%= form_for @employee do |f| %>
+  <% if @employee.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @employee.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="row">
+    <p class="subber-heading"> Name </p>
+        <ul class="stepper horizontal">
+        <div class="input-field col s2 offset-s4">
+            <%= f.label :first_name,:class=>"active" %>
+            <%= f.text_field :first_name %>
+        </div>
+        <div class="input-field col s2" >
+            <%= f.label :middle_i,:class=>"active" %>
+            <%= f.text_field :middle_i %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :last_name,:class=>"active" %>
+            <%= f.text_field :last_name %>
+        </div>
+    </div>
+    <div class="row">
+        <p class="subber-heading" id="information"> Address </p>
+        <div class="input-field col s6 offset-s4">
+            <%= f.label :street_address,:class=>"active" %>
+            <%= f.text_field :street_address %>
+        </div>
+        <div class="input-field col s4 offset-s4">
+            <%= f.label :city,:class=>"active" %>
+            <%= f.text_field :city %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :state,:class=>"active" %>
+            <%= f.select :state, options_for_select(["CA","OR","AZ","NY"]) %>
+        </div>
+    </div>
+        <div class="row">
+                <p class="subber-heading"> </p>
+                <div class="input-field offset-s4 col s2">
+                    <%= f.label :gender,:class=>"active" %>
+                    <%= f.select :state, options_for_select(["Male","Female"]) %>
+                </div>
+                <div class="input-field col s3">
+                    <%= f.label :birthday,:class=>"active" %>
+                    <%= f.date_field :birthday %>
+                </div>
+        </div>
+    <div class="row">
+        <p class="subber-heading"> Details </p>
+        <div class="input-field offset-s4 col s2">
+            <%= f.label :work_location,:class=>"active" %>
+            <%= f.text_field :work_location %>
+        </div>
+        <div class="input-field col s2" id="work">
+            <%= f.label :workers_comp_class,:class=>"active" %>
+            <%= f.text_field :workers_comp_class %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :id_number,:class=>"active" %>
+            <%= f.text_field :id_number %>
+        </div>
+        <div class="input-field col s3 offset-s4">
+            <%= f.label :hire_date,:class=>"active" %>
+            <%= f.date_field :hire_date %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :status,:class=>"active" %>
+            <%= f.select :status, options_for_select([true, false]) %>
+        </div>
+        
+    </div>
+        <div class="row">
+        <p class="subber-heading" id="pay"> Pay </p>
+        <div class="input-field col s2 offset-s4">
+            <%= f.label :jobtype,:class=>"active" %>
+            <%= f.select :jobtype, options_for_select(["General Manager","Manager","PIC","Bartender","Server","Host","Expo","Driver"]) %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :rate,:class=>"active" %>
+            <%= f.number_field :rate %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :paid_by,:class=>"active" %>
+            <%= f.text_field :paid_by %>
+        </div>
+    </div>
+    <div class="row">
+        <p class="subber-heading" id="taxes"> Taxes and Exemptions </p>
+        <div class="input-field col s3 offset-s4">
+            <%= f.label :social_security_number,:class=>"active" %>
+            <%= f.number_field :social_security_number %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :federal_filing_status,:class=>"active" %>
+            <%= f.number_field :federal_filing_status %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :federal_filing_allowances,:class=>"active" %>
+            <%= f.number_field :federal_filing_allowances %>
+        </div>
+        <div class="input-field col s2 offset-s7">
+            <%= f.label :state_filing_status,:class=>"active" %>
+            <%= f.number_field :state_filing_status %>
+        </div>
+        <div class="input-field col s2">
+            <%= f.label :state_filing_allowances,:class=>"active" %>
+            <%= f.number_field :state_filing_allowances %>
+        </div>
+    </div>
+    <div class="btn right"><%= f.submit "Update Employee" %></div>
+    </ul>
+<% end %>
+</div>

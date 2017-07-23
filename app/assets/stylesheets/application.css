@@ -16,4 +16,39 @@
 body {
     padding: 0;
     margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+a {
+    color:white;
+    font-size: .7em;
+}
+
+#employee_state, #employee_status, #employee_jobtype, #employee_gender {
+    display: inline-block;
+}
+
+.text-shade {
+    text-shadow: 2px 1px 5px grey;
+}
+
+.error-messages {
+    color: red;
+}
+
+.logo {
+    width: 50%;
+    height:50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.fixed-bar {
+    position: fixed;
 }

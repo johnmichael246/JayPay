@@ -29,7 +29,7 @@ before_action :authorize
     def create
         @employee = Employee.new(employee_params)
         if @employee.save
-            redirect_to employee_path
+            redirect_to employees_path
         else
             render :new
         end
@@ -38,9 +38,63 @@ before_action :authorize
 
     def destroy
         @employee.destroy
+        redirect_to employees_path
     end
     
-
+    @us_states = [
+      ['Alabama', 'AL'],
+      ['Alaska', 'AK'],
+      ['Arizona', 'AZ'],
+      ['Arkansas', 'AR'],
+      ['California', 'CA'],
+      ['Colorado', 'CO'],
+      ['Connecticut', 'CT'],
+      ['Delaware', 'DE'],
+      ['District of Columbia', 'DC'],
+      ['Florida', 'FL'],
+      ['Georgia', 'GA'],
+      ['Hawaii', 'HI'],
+      ['Idaho', 'ID'],
+      ['Illinois', 'IL'],
+      ['Indiana', 'IN'],
+      ['Iowa', 'IA'],
+      ['Kansas', 'KS'],
+      ['Kentucky', 'KY'],
+      ['Louisiana', 'LA'],
+      ['Maine', 'ME'],
+      ['Maryland', 'MD'],
+      ['Massachusetts', 'MA'],
+      ['Michigan', 'MI'],
+      ['Minnesota', 'MN'],
+      ['Mississippi', 'MS'],
+      ['Missouri', 'MO'],
+      ['Montana', 'MT'],
+      ['Nebraska', 'NE'],
+      ['Nevada', 'NV'],
+      ['New Hampshire', 'NH'],
+      ['New Jersey', 'NJ'],
+      ['New Mexico', 'NM'],
+      ['New York', 'NY'],
+      ['North Carolina', 'NC'],
+      ['North Dakota', 'ND'],
+      ['Ohio', 'OH'],
+      ['Oklahoma', 'OK'],
+      ['Oregon', 'OR'],
+      ['Pennsylvania', 'PA'],
+      ['Puerto Rico', 'PR'],
+      ['Rhode Island', 'RI'],
+      ['South Carolina', 'SC'],
+      ['South Dakota', 'SD'],
+      ['Tennessee', 'TN'],
+      ['Texas', 'TX'],
+      ['Utah', 'UT'],
+      ['Vermont', 'VT'],
+      ['Virginia', 'VA'],
+      ['Washington', 'WA'],
+      ['West Virginia', 'WV'],
+      ['Wisconsin', 'WI'],
+      ['Wyoming', 'WY']
+    ]
 
     private
 
@@ -49,6 +103,6 @@ before_action :authorize
         end
         
         def employee_params
-      params.require(:employee).permit(:first_name, :middle_i, :last_name, :Street_address, :city, :state, :gender, :id_number, :admin, :status, :hire_date, :workers_comp_class, :work_location, :birthday, :jobtype, :rate, :paid_by, :SS, :Federal_filing_status, :Federal_filing_allowances, :State_filing_status, :State_filing_allowances,)
+      params.require(:employee).permit(:first_name, :middle_i, :last_name, :street_address, :city, :state, :gender, :id_number, :admin, :status, :hire_date, :workers_comp_class, :work_location, :birthday, :jobtype, :rate, :paid_by, :SS, :federal_filing_status, :federal_filing_allowances, :state_filing_status, :state_filing_allowances,)
     end
 end

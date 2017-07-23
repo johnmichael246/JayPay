@@ -13,15 +13,9 @@
     text-align: center;
     margin: 0 auto;
 }
-
+.title {
+    text-shadow: 1px 1px grey;
+}
 .subtitle {
     font-size: 1.5em;
-}
-
-
-
-.sticky {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
 }
