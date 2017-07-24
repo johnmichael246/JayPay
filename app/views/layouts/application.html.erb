@@ -23,6 +23,7 @@
   <% if current_user %>
         <nav>
     <div class="nav-wrapper blue-grey accent-2">
+    <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo"></a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><%=link_to "To-Do", todos_path %></li>
         <li><%=link_to "Payroll", payrolls_path%> </li>
@@ -33,16 +34,20 @@
       <ul id="nav-mobile" class="right">
         <li> Welcome, <%= current_user.first_name.capitalize %>
         &nbsp;&nbsp;|&nbsp;&nbsp;</li>
-        <li class="right"> <%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>  
+        <li class="right"> <%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>   
       </ul>
     </div>
     </nav>
   <% else %>
   <nav>
     <div class="nav-wrapper blue-grey accent-2">
+    <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo right"></a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li> <%= link_to 'Log In', login_path %> </li>  
         <li> <%= link_to 'Sign Up', new_user_path %> </li>
+      </ul>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li> <a href = "tel:562-325-4294"class="right phone">562-325-4294</a></li>
       </ul>
     </div>
   </nav>

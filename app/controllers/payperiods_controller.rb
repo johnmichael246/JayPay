@@ -1,0 +1,3 @@
+class PayperiodsController < ApplicationController
+    
+end

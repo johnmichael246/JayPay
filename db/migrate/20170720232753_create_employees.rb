@@ -7,9 +7,9 @@ class CreateEmployees < ActiveRecord::Migration[5.1]
       t.string :street_address
       t.string :city
       t.string :state
-      t.integer :zipcode
+      t.string :zipcode
       t.string :gender
-      t.integer :id_number
+      t.string :id_number
       t.string :admin
       t.boolean :status
       t.date :hire_date
@@ -21,7 +21,7 @@ class CreateEmployees < ActiveRecord::Migration[5.1]
       t.string :paid_by
       t.string :social_security_number
       t.integer :federal_filing_status
-      t.integer :federal_filing_allowances
+      t.integer:federal_filing_allowances
       t.integer :state_filing_status
       t.integer :state_filing_allowances
 

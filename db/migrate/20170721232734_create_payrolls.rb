@@ -1,7 +1,6 @@
 class CreatePayrolls < ActiveRecord::Migration[5.1]
   def change
     create_table :payrolls do |t|
-      t.date :start_date
       t.date :end_date
 
       t.timestamps

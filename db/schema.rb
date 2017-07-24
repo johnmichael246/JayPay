@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723052058) do
+ActiveRecord::Schema.define(version: 20170724183735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,18 @@ ActiveRecord::Schema.define(version: 20170723052058) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payperiods", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.bigint "payroll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "reg_hours"
+    t.float "ovr_hours"
+    t.index ["employee_id"], name: "index_payperiods_on_employee_id"
+    t.index ["payroll_id"], name: "index_payperiods_on_payroll_id"
+  end
+
   create_table "payrolls", force: :cascade do |t|
-    t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,5 +88,7 @@ ActiveRecord::Schema.define(version: 20170723052058) do
   end
 
   add_foreign_key "checks", "payrolls"
+  add_foreign_key "payperiods", "employees"
+  add_foreign_key "payperiods", "payrolls"
   add_foreign_key "payrolls", "employees"
 end

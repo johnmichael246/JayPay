@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root 'pages#welcome'
 
+  post 'payrolls/:id/payperiods', to: 'payrolls#create' 
+
   resources :employees
   resources :todos
   resources :payrolls, only: [:new, :create, :index, :show]

@@ -1,0 +1,31 @@
+ <h2 class="col s4"> Payroll for <%= @pay_date.strftime("Pay Period ending %m.%d.%y")%>  </h2>
+<hr width=85%>
+<div class="container">
+    <%=form_tag "/payrolls/#{@payroll.id}/payperiods" do -%>
+    <table class = "bordered centered responsive-table">
+    <thead>
+        <tr>
+            <th> First Name</th>
+            <th> Last Name</th>
+            <th colspan=2> Regular Hours</th>
+            <th colspan=2> Overtime </th>
+        </tr>
+    </thead>
+        <% @employees.each do |info| %>
+            <tbody>
+                <tr>
+                    <td> <%= info.first_name %> </td>
+                    <td> <%= info.last_name %> </td>
+                    <td> <%= number_field_tag "[payroll][#{info.id}][reg_hours]" %></td>
+                    <td> $<%= (info.rate) *1.0 %> </td>
+                    <td> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]" %></td>
+                    <td> $<%=(info.rate) *1.5 %></td>
+                </tr>
+        <% end %>
+        <tr> 
+            <td colspan="6"><%=submit_tag "Submit Payroll", :class=>"btn-right" %> </td> 
+        </tr>
+            </tbody>
+    </table>
+    <%end -%>
+</div>

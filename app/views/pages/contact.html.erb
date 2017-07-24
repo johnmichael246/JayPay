@@ -1,6 +1,6 @@
 <div class="col s12">
     <div class="row">
-        <h3 class="col s8 offset-s1 fade-in"> Have a question?<h3>
+        <h3 class="col s8 offset-s1"> Have a question?<h3>
     </div>    
 </div>
 <div class="container">
@@ -22,10 +22,14 @@
                 <label for="email"data-error="wrong" data-success="right">Email</label>
             </div>
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s10 offset-s1">
                 <input id="question" type="text" >
                 <label for="question">Ask away:</label>
             </div>
+            <button type="button" class="btn col push-s10"> 
+            <input type="hidden" name="redirect" value="welcome.html.erb">
+            Submit </input>
+            </button>
         </div>
     </form>
 </div>
