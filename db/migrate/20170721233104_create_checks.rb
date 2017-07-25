@@ -4,7 +4,6 @@ class CreateChecks < ActiveRecord::Migration[5.1]
       t.integer :check_id
       t.float :check_total
       t.string :check_name
-      t.references :payroll, foreign_key: true
 
       t.timestamps
     end

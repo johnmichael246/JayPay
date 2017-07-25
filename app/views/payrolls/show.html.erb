@@ -1,28 +1,23 @@
-<h2 class="col s4"> This is the Payroll index </h2>
+<h2 class="col s4"> This is the Check index </h2>
 <hr width=85%>
 <div class="container">
-  <a href="/payrolls/new" class="waves-effect waves-light btn green right">New Payroll</a>
+  <a href="#" class="waves-effect waves-light btn green right">Checks</a>
   <table class = "bordered centered responsive-table">
     <thead>
         <tr>
-            <th> First Name</th>
-            <th> Last Name</th>
-            <th> Pay Rate</th>
-            <th> Reg Hours </th>
-            <th> Overtime Rate</th>
-            <th> Overtime Hours</th>
+            <th> Check Number</th>
+            <th colspan="2"> Employee Name</th>
+            <th> Total</th>
         </tr>
     </thead>
-      <% @payroll.each do |info| %>
         <tbody>
+          <% @payroll.checks.each do |info| %>
           <tr>
-            <td> <%= info.employee.first_name %> </td>
-            <td> <%= info.employee.last_name %> </td>
-            <td> $<%= info.employee.rate %> </td>
-            <td> <%= emp.reg_hours %> </td>
-            <td> <%= emp.ovr_hours %> </td>
+            
+            <td> <%= info.check_name %> </td>
+            <td> $<%= info.check_total %> </td>
           </tr>
+        <% end %>
         </tbody>
-      <% end %>
   </table>
 </div>

@@ -8,13 +8,18 @@ Rails.application.routes.draw do
 
   root 'pages#welcome'
 
-  post 'payrolls/:id/payperiods', to: 'payrolls#create' 
+  post 'payrolls/:id/payperiods', to: 'payrolls#create'
 
+  resources :checks, only: [:index, :new, :create, :show]
   resources :employees
   resources :todos
-  resources :payrolls, only: [:new, :create, :index, :show]
+  resources :payrolls, only: [:new, :index, :show]
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :payperiods, only: [:show]
+
+  post '/payrolls/:id/payperiods', to: 'payrolls#create'
+  get '/payrolls/:id/payperiods', to: 'payrolls#show', as: 'pay_period'
 
   get '/login', to: 'sessions#new'
 

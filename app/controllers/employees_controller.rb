@@ -104,6 +104,6 @@ before_action :authorize
         end
         
         def employee_params
-      params.require(:employee).permit(:first_name, :middle_i, :last_name, :street_address, :city, :state, :gender, :id_number, :admin, :status, :hire_date, :workers_comp_class, :work_location, :birthday, :jobtype, :rate, :paid_by, :social_security_number, :federal_filing_status, :federal_filing_allowances, :state_filing_status, :state_filing_allowances)
+      params.require(:employee).permit(:first_name, :middle_i, :last_name, :street_address, :city, :state, :zipcode, :gender, :id_number, :admin, :status,:hire_date, :workers_comp_class, :work_location, :birthday, :jobtype, :rate, :paid_by, :social_security_number, :federal_filing_status, :federal_filing_allowances, :state_filing_status, :state_filing_allowances)
     end
 end

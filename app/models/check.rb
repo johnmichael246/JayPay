@@ -1,3 +1,4 @@
 class Check < ApplicationRecord
-  belongs_to :payroll
+  belongs_to :payperiod
+  has_one :employee, through: :payperiod
 end

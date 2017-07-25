@@ -10,5 +10,33 @@
   </div>
 </nav>
 <div>
-<a href="/payrolls/new" class="waves-effect waves-light btn right">Start Payroll</a>
+</div>
+
+<h2 class="col s4 center-align"> Payroll History </h2>
+<hr width=85%>
+<div class="container">
+  <table class = "centered responsive-table">
+    <thead>
+      <tr>
+          <th> Period end date </th>
+          <th> Pay Date </th>
+          <th> Check Totals </th>
+          <th> Gross Earnings </th>
+      </tr>
+    </thead>
+      <% @payrolls.each do |info| %>
+        <tbody>
+            <tr>
+                <td><%=link_to "click", payroll_path(info)%></td>
+                <td><%=@pay_date %></td>
+                <td><%=check_adder(info)%></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+      <% end %>
+        <%=link_to "Start Payroll", new_payroll_path, :class=>"waves-effect waves-light btn right" %>
+
+    </table>
 </div>

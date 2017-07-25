@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724183735) do
+ActiveRecord::Schema.define(version: 20170725233152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checks", force: :cascade do |t|
-    t.integer "check_id"
     t.float "check_total"
     t.string "check_name"
-    t.bigint "payroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["payroll_id"], name: "index_checks_on_payroll_id"
+    t.bigint "employee_id"
+    t.bigint "payperiod_id"
+    t.index ["employee_id"], name: "index_checks_on_employee_id"
+    t.index ["payperiod_id"], name: "index_checks_on_payperiod_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -51,6 +52,8 @@ ActiveRecord::Schema.define(version: 20170724183735) do
     t.integer "state_filing_allowances"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "payroll_id"
+    t.index ["payroll_id"], name: "index_employees_on_payroll_id"
   end
 
   create_table "payperiods", force: :cascade do |t|
@@ -60,6 +63,8 @@ ActiveRecord::Schema.define(version: 20170724183735) do
     t.datetime "updated_at", null: false
     t.float "reg_hours"
     t.float "ovr_hours"
+    t.bigint "checks_id"
+    t.index ["checks_id"], name: "index_payperiods_on_checks_id"
     t.index ["employee_id"], name: "index_payperiods_on_employee_id"
     t.index ["payroll_id"], name: "index_payperiods_on_payroll_id"
   end
@@ -69,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170724183735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "employee_id"
+    t.boolean "current", default: true
     t.index ["employee_id"], name: "index_payrolls_on_employee_id"
   end
 
@@ -87,7 +93,10 @@ ActiveRecord::Schema.define(version: 20170724183735) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "checks", "payrolls"
+  add_foreign_key "checks", "employees"
+  add_foreign_key "checks", "payperiods"
+  add_foreign_key "employees", "payrolls"
+  add_foreign_key "payperiods", "checks", column: "checks_id"
   add_foreign_key "payperiods", "employees"
   add_foreign_key "payperiods", "payrolls"
   add_foreign_key "payrolls", "employees"
