@@ -27,5 +27,23 @@ class ApplicationController < ActionController::Base
       end
       return @check_total
     end
+
+    def gross_check(payroll)
+      @gross_check_total = 0
+      payroll.payperiods.each do |payperiod|
+        payperiod.checks.each do |check|
+          @gross_check_total += check.check_total
+        end
+      end
+      return @gross_check_total
+    end
+    
+    def check_count(payroll)
+      payroll.payperiod.each do |payperiod|
+        payperiod.checks.count
+      end
+    end
+    
+
     
 end

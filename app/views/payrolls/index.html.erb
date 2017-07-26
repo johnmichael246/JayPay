@@ -16,10 +16,11 @@
 <hr width=85%>
 <div class="container">
   <table class = "centered highlight responsive-table">
-    <thead>
+    <thead class= "">
       <tr>
           <th> Period end date </th>
           <th> Pay Date </th>
+          <th> Checks Cut </th>
           <th> Check Totals </th>
           <th> Gross Earnings </th>
       </tr>
@@ -31,8 +32,9 @@
                       <%=content_tag :span, info.end_date, :class=>"btn-flat"%>
                     <%end%></td>
                 <td><%=@pay_date %></td>
+                <td><%=%></td>
                 <td><%=check_adder(info)%></td>
-                <td> </td>
+                <td>gross_check(info) </td>
                 <td> </td>
                 <td> </td>
             </tr>

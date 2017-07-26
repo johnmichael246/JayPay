@@ -1,19 +1,19 @@
-<h2 class="col s4"> This is the Check index </h2>
+<h2 class="col s4">Checks for period <%=@payroll.end_date.strftime("%m.%d.%y") %> </h2>
 <hr width=85%>
 <div class="container">
-  <a href="#" class="waves-effect waves-light btn green right">Checks</a>
+  <a href="/payrolls" class="waves-effect waves-light btn green right">Checks</a>
   <table class = "bordered centered responsive-table">
     <thead>
         <tr>
             <th> Check Number</th>
-            <th colspan="2"> Employee Name</th>
-            <th> Total</th>
+            <th> Employee Name</th>
+            <th> Net Check Amount</th>
         </tr>
     </thead>
         <tbody>
           <% @payroll.checks.each do |info| %>
           <tr>
-            <td> nfo.payperiod.last.check.last.id </td>
+            <td> <%=info.id%></td>
             <td> <%= info.check_name %> </td>
             <td> $<%= info.check_total %> </td>
           </tr>
