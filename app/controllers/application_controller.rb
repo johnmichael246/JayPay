@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     end
     
     def check_count(payroll)
-      payroll.payperiod.each do |payperiod|
+      payroll.payperiods.each do |payperiod|
         payperiod.checks.count
       end
     end
