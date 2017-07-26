@@ -7,7 +7,6 @@ class PayrollsController < ApplicationController
         @num_days = (Date.today - @initialize_date).to_i % 14
         @pay_period_date = Date.today - @num_days.days
         @pay_date = @pay_period_date + 5.days
-        
     end
     
     def show
@@ -32,7 +31,6 @@ class PayrollsController < ApplicationController
     end
     
     def update
-
     end
 
     def create
@@ -145,7 +143,7 @@ private
         state_taxes = base_tax + (excess * percent)
     end
     
-
+    
 
 end
 

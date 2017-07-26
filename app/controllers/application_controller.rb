@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-    helper_method :current_user, :check_adder
+    helper_method :current_user, :check_adder, :gross_check, :check_count
 
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -18,6 +18,16 @@ class ApplicationController < ActionController::Base
 
 
     #  Given a single payroll produce a single value which corresponds to the sum of all checks for a payperiod 
+    def gross_check(payroll)
+        @gross_total = 0
+        payroll.payperiods.each do |payperiod|
+          payperiod.checks.each do |check|
+            @gross_total = check.check_total
+        end
+      end
+      return @gross_total
+    end
+
     def check_adder(payroll)
       @check_total = 0
       payroll.payperiods.each do |payperiod|
@@ -28,22 +38,14 @@ class ApplicationController < ActionController::Base
       return @check_total
     end
 
-    def gross_check(payroll)
-      @gross_check_total = 0
-      payroll.payperiods.each do |payperiod|
-        payperiod.checks.each do |check|
-          @gross_check_total += check.check_total
-        end
-      end
-      return @gross_check_total
-    end
     
     def check_count(payroll)
+      @num_checks = 0
       payroll.payperiods.each do |payperiod|
-        payperiod.checks.count
+        @num_checks += payperiod.checks.count
       end
+      return @num_checks
     end
     
 
-    
 end
