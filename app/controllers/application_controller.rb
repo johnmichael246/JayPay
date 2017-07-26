@@ -28,7 +28,4 @@ class ApplicationController < ActionController::Base
       return @check_total
     end
     
-    
-    
-
 end

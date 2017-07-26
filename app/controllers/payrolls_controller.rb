@@ -51,4 +51,7 @@ private
         rate * (reg_hours + (ovr_hours * 1.5))
     end
 
+
+
+
 end

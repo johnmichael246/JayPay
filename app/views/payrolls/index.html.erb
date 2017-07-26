@@ -15,7 +15,7 @@
 <h2 class="col s4 center-align"> Payroll History </h2>
 <hr width=85%>
 <div class="container">
-  <table class = "centered responsive-table">
+  <table class = "centered highlight responsive-table">
     <thead>
       <tr>
           <th> Period end date </th>
@@ -27,7 +27,9 @@
       <% @payrolls.each do |info| %>
         <tbody>
             <tr>
-                <td><%=link_to "click", payroll_path(info)%></td>
+                <td><%=link_to payroll_path(info) do%>
+                      <%=content_tag :span, info.end_date, :class=>"btn-flat"%>
+                    <%end%></td>
                 <td><%=@pay_date %></td>
                 <td><%=check_adder(info)%></td>
                 <td> </td>
