@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725233152) do
+ActiveRecord::Schema.define(version: 20170726181527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20170725233152) do
     t.datetime "updated_at", null: false
     t.bigint "employee_id"
     t.bigint "payperiod_id"
+    t.float "gross_total"
+    t.float "fed_taxes"
+    t.float "state_taxes"
     t.index ["employee_id"], name: "index_checks_on_employee_id"
     t.index ["payperiod_id"], name: "index_checks_on_payperiod_id"
   end

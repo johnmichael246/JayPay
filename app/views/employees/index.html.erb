@@ -1,7 +1,7 @@
-<h2 class="col s4"> Employee Overview </h2>
+<h2 class="col s4 margin"> Employee Overview </h2>
 <hr width=85%>
 <div class="container">
-    <a href="/employees/new" class="waves-effect waves-light btn green right">&plus; Employee</a>
+    <a href="/employees/new" class="waves-effect waves-light btn right stickybutt">&plus; Employee</a>
     <table class = "highlight bordered centered responsive-table">
     <thead>
         <tr>
@@ -24,17 +24,34 @@
                             <%else%> 
                             <%=emp.status = 'inactive' %>
                         <%end%></td>
-                    <td><%=link_to edit_employee_path(emp), :class=>"waves-effect waves-light btn-flat btn-small" do%>
+                    <td class="imagination"><%=link_to edit_employee_path(emp), :class=>"waves-effect waves-light btn-flat btn-small" do%>
                         <i class="material-icons">mode_edit</i>
                     <%end%>
                     </td>
-                    <td><%=link_to emp, :class=>"waves-effect waves-light btn-flat btn-small", method: :delete, data: {confirm: "WARNING! Employees should be archived with status-inactive, deleting an employee will erase all records of the employee"} do%>
+                    <td class="imagination"><%=link_to emp, :class=>"waves-effect waves-light btn-flat btn-small", method: :delete, data: {confirm: "WARNING! Employees should be archived with status-inactive, deleting an employee will erase all records of the employee"} do%>
                         <i class="material-icons">delete_forever</i>
                     <%end%>
                     </td>
                 </tr>
             </tbody>
         <% end %>
-</table>
+    </table>
 </div>
 </div>
+
+
+ 
+  <a class="waves-effect waves-light btn modal-trigger" href="#warning">
+    <i class="material-icons">delete_forever</i>
+    </a>
+
+ 
+  <div id="warning" class="modal">
+    <div class="modal-content">
+      <h4>Warning</h4>
+      <p>Employees should not be deleted, instead archive employees by changing their status to inactive. </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"data-method:"delete">Ok</a>
+    </div>
+  </div>

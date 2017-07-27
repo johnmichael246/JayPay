@@ -1,5 +1,6 @@
 class ChecksController < ApplicationController
 end
+before_action :authorize
 
 def show
     @check = Check.find(params[:id])

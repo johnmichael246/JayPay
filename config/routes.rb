@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :checks, only: [:index, :new, :create, :show]
   resources :employees
-  resources :todos
+  resources :todos, except: [:edit, :patch, :show]
   resources :payrolls, only: [:new, :index, :show]
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]

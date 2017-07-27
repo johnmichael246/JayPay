@@ -1,0 +1,60 @@
+ <h2 class="col s4 center-align flow-text"> 
+    Check For <%=@check.employee.first_name.capitalize%> for Pay Period Ending <%=@check.payperiod.payroll.end_date.strftime('%m.%d.%y')%>  
+</h2>
+
+<hr width=85%>
+    <div class="col s12">
+        <div class="row">
+            <table class="responsive table-border">
+                <thead>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </thead>
+                <tr>
+                    <td><%="#{@check.employee.first_name} #{@check.employee.last_name}" %></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="check-number"><strong><%= @check.id %><strong></td>
+                </tr>
+                <tr>
+                    <td><%=@check.employee.street_address%>&nbsp;&nbsp;<%=@check.employee.city%> &nbsp;&nbsp;<%=@check.employee.state%></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><%=@check.payperiod.payroll.end_date.strftime('%m.%d.%y')%></td>
+                </tr>
+                <tr>
+                    <td><%=@check.employee.zipcode%></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr> 
+                    <td>Pay to the order of</td>
+                    <td></td>
+                    <td class="check-name"> <strong> <%="#{@check.employee.first_name} #{@check.employee.last_name}"%> </strong> </td>
+                    <td></td>
+                    <td>$<%=@check.check_total %></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Dollars</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                <td class="memo-line">Memo: Payroll for <%=((@check.payperiod.payroll.end_date)- 14.days).strftime('%m.%d.%y')%>- <%=@check.payperiod.payroll.end_date.strftime('%m.%d.%y')%></td>
+                <td></td>
+                <td></td>
+                <td class="memo-line">Signature Here</td>
+                <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>

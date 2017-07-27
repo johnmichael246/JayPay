@@ -23,7 +23,8 @@
                 </tr>
         <% end %>
         <tr> 
-            <td colspan="6"><%=submit_tag "Submit Payroll", :class=>"btn-right" %> </td> 
+            <td colspan="6"><%=submit_tag "Submit Payroll", :class=>"btn-right", data: {confirm: "Payroll cannot be changed once processed, please confirm that all information is correct before proceeding"} %> </td>
+            
         </tr>
             </tbody>
     </table>

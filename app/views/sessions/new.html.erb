@@ -1,16 +1,34 @@
-<div class="container">
-<h1>Log In</h1>
-<p id="alert"><%= alert %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col s6 login-border-right">
+      <div class="col s12">
+        <h1>Log In</h1>
+        <p id="alert"><%= alert %></p>
+        <%= form_tag sessions_path do %>
 
-<%= form_tag sessions_path do %>
-  <div class="-input">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
+        <div class="input col s11">
+          <%= label_tag :email %>
+          <%= text_field_tag :email, params[:email] %>
+        </div>
+
+        <div class="input col s11">
+          <%= label_tag :password %>
+          <%= password_field_tag :password %>
+        </div>
+
+        <div class="actions col offset-s7">
+          <%= submit_tag "Log In", :class=>"btn" %>
+        </div>
+          <% end %>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="img-container">
+        <img class="welcome-image" src="http://i.imgur.com/0cAFyoS.png" alt="#">
+      </div>
+    </div>
   </div>
-  <div class="input">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>
 </div>
+
+
+

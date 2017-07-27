@@ -19,10 +19,10 @@ class ApplicationController < ActionController::Base
 
     #  Given a single payroll produce a single value which corresponds to the sum of all checks for a payperiod 
     def gross_check(payroll)
-        @gross_total = 0
+        @gross_check_total = 0
         payroll.payperiods.each do |payperiod|
           payperiod.checks.each do |check|
-            @gross_total = check.check_total
+            @gross_check_total = check.gross_total
         end
       end
       return @gross_total

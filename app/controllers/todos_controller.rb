@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+    before_action :authorize
 
     def index
         @todos=Todo.all
@@ -13,8 +14,6 @@ class TodosController < ApplicationController
         @todo = Todo.new(params.require(:todo).permit(:list))
         if @todo.save
             redirect_to todos_path
-        else
-            render :new
         end
     end
     

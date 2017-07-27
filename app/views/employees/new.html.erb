@@ -1,10 +1,10 @@
 
-<h2 class="col s4"> Add Employee </h2>
+<h2 class="col s4 margin"> Add Employee </h2>
 <hr width=85%>
 <%= form_for @employee do |f| %>
     <% if @employee.errors.any? %>
-        <div class="error-messages">
-            <h2>Uh-Oh!</h2>
+        <div class="error-messages center-align">
+            <h3>Uh-Oh!</h3>
             <ul>
                 <% for message in @employee.errors.messages %>
                     <li><%= message %></li>
@@ -55,8 +55,8 @@
                     <%= f.select :state, options_for_select(["Male","Female"]) %>
             </div>
             <div class="input-field col s2 offset-s1">
-                <%= f.label :birthday,:class=>"active" %>
-                <%= f.date_field :birthday %>
+                <%= f.label :birthday,:class=>"active datepicker" %>
+                <%= f.text_field :birthday %>
             </div>
         </div>
         <div id="t2" class="col s12">
@@ -77,10 +77,6 @@
                 <%= f.label :hire_date,:class=>"active" %>
                 <%= f.date_field :hire_date %>
             </div>
-            <div class="input-field col s2 offset-s2">
-                <%= f.label :status,:class=>"active" %>
-                <%= f.select :status, options_for_select([true, false]) %>
-            </div>
         </div>
         <div id="t3" class="col s12">
             </br>
@@ -90,7 +86,7 @@
             </div>
             <div class="input-field col s2">
                 <%= f.label :rate,:class=>"active" %>
-                <%= f.number_field :rate %>
+                <%= f.number_field :rate, :value =>(number_with_precision(f.object.rate, :precision =>2) || 12.00) %>
             </div>
             <div class="input-field col s2">
                 <%= f.label :paid_by,:class=>"active" %>

@@ -1,21 +1,29 @@
-<h2 class="col s4">Checks for period <%=@payroll.end_date.strftime("%m.%d.%y") %> </h2>
+<h2 class="col s4 margin">Checks for period <%=@payroll.end_date.strftime("%m.%d.%y") %> </h2>
 <hr width=85%>
 <div class="container">
   <a href="/payrolls" class="waves-effect waves-light btn right">Back to Payroll</a>
-  <table class = "bordered highlight centered responsive-table">
+  <table class = "bordered centered responsive-table">
     <thead>
         <tr>
+            <th></th>
             <th> Check Number</th>
             <th> Employee Name</th>
+            <th> Gross Pay</th>
             <th> Net Check Amount</th>
+            <th> Fed Taxes Due</th>
+            <th> State Taxes Due</th>
         </tr>
     </thead>
         <tbody>
           <% @payroll.checks.each do |info| %>
           <tr>
+            <td> <%=link_to "View", payperiod_path(info.id), :class=>"btn" %></td>
             <td> <%=info.id%></td>
             <td> <%= info.check_name %> </td>
+            <td> $<%= info.gross_total %> </td>
             <td> $<%= info.check_total %> </td>
+            <td> $<%= info.fed_taxes %> </td>
+            <td> $<%= info.state_taxes %> </td>
           </tr>
         <% end %>
         </tbody>

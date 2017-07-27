@@ -1,5 +1,6 @@
 class PayperiodsController < ApplicationController
+    before_action :authorize
     def show
-        @payperiod = Payperiod.find(params[:id])
+        @check = Check.find(params[:id])
     end
 end

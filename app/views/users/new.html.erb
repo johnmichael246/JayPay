@@ -1,12 +1,12 @@
-<h1>Sign Up</h1>
+<h1 class="margin">Sign Up</h1>
 <div class="container">
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h4>Form is invalid</h4>
       <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
+        <% for message in @user.errors.messages %>
+          <li class="error-messages"><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -31,6 +31,6 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions btn"><%= f.submit %></div>
+  <div><%= f.submit "Sign Up!", :class=> "btn" %></div>
 <% end %>
 </div>

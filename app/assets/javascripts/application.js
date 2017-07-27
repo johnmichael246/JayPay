@@ -18,4 +18,18 @@ $(document).ready(function(){
     $('ul.tabs').tabs();
   });
 
+  $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+  $(document).ready(function() {
+  $('#submitButton').on('click', function() { $('#Payroll_form').submit(); });
+});
+
+  $(document).ready(function() {
+  $('#warndelete').on('click', function() { $('#Payroll_form').submit(); });
+});
+
+
 

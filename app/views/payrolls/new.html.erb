@@ -1,31 +1,46 @@
- <h2 class="col s4 center-align"> Payroll for <%= @pay_date.strftime("Period ending %m.%d.%y")%>  </h2>
+ <h2 class="col s4 center-align"> Payroll for <%= @pay_period_date.strftime("Period ending %m.%d.%y")%>  </h2>
 <hr width=85%>
 <div class="container">
-    <%=form_tag "/payrolls/#{@payroll.id}/payperiods" do -%>
+    <%=form_tag "/payrolls/#{@payroll.id}/payperiods", :id=>"Payroll_form" do -%>
     <table class = "centered responsive-table">
-    <thead>
-        <tr>
-            <th> First Name</th>
-            <th> Last Name</th>
-            <th> Regular Hours</th>
-            <th> Overtime </th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th></th>
+                <th> First Name</th>
+                <th> Last Name</th>
+                <th colspan="2"> Regular Hours</th>
+                <th colspn = "2"> Overtime </th>
+            </tr>
+        </thead>
         <% @employees.each do |info| %>
             <tbody>
                 <tr>
                     <td> <%= info.first_name %> </td>
                     <td> <%= info.last_name %> </td>
-                    <td colspan="1"> <%= number_field_tag "[payroll][#{info.id}][reg_hours]" %></td>
-                    <td> $<%= (info.rate) *1.0 %> </td>
-                    <td colspan="1"> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]" %></td>
-                    <td> $<%=(info.rate) *1.5 %></td>
+                    <td> <%= number_field_tag "[payroll][#{info.id}][reg_hours]" %></td>
+                    <td> $<%=((info.rate) *1.0) %> </td>
+                    <td> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]" %></td>
+                    <td> $<%=((info.rate) *1.5) %></td>
                 </tr>
-        <% end %>
-        <tr> 
-            <td colspan="6"><%=submit_tag "Submit Payroll", :class=>"btn-right" %> </td> 
-        </tr>
+        <% end %> 
             </tbody>
     </table>
+    <button data-target="confirmpayroll" class="btn modal-trigger">Submit Payroll</button>
     <%end -%>
 </div>
+
+
+
+
+
+
+
+<div id="confirmpayroll" class="modal">
+    <div class="modal-content">
+      <h4>Confirm Payroll</h4>
+      <p>Submissions cannot be updated once submitted, please make sure that all hours are correct.</p>
+    </div>
+    <div class="modal-footer">
+    <button id="submitButton" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</button>
+    </div>
+  </div>

@@ -4,7 +4,7 @@ before_action :modify_employee, only: [:show, :edit, :update, :destroy]
 before_action :authorize
 
     def index
-        @employees = Employee.all
+        @employees = Employee.all.order("created_at DESC")
     end
     
     def show

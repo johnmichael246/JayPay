@@ -21,10 +21,8 @@
                 <tr>
                     <td><%=list.created_at.strftime('%m.%d.%Y') %></td>
                     <td class="truncate"> <%= list.list %> </td> 
-                    <td> <%=link_to edit_todo_path(list), :class=>"waves-effect waves-light btn-flat" do%>
-                        <i class="material-icons">mode_edit</i><%end%>
-                        <%=link_to list, method: :delete, :class=>"waves-effect waves-light btn-flat" do %>
-                        <i class="material-icons">delete_forever</i> <%end%>
+                    <td> <%=link_to list, method: :delete, :class=>"waves-effect waves-light btn-flat imagination" do %> <i class="material-icons">delete_forever</i> 
+                        <%end%>
                     </td>
                 </tr>
             </tbody>

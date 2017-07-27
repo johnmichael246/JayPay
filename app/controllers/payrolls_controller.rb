@@ -1,4 +1,5 @@
 class PayrollsController < ApplicationController
+    before_action :authorize
 
     def index
         @payrolls = Payroll.all
@@ -20,16 +21,28 @@ class PayrollsController < ApplicationController
         @pay_period_date = Date.today - @num_days.days
         @pay_date = @pay_period_date + 5.days
         @payroll = Payroll.find_by(end_date: @pay_period_date)
-        @payroll_current = Payroll.last.current
+        @payroll_current = Payroll.last.payperiods
+
         # generate a new payroll
-        if  @payroll_current
+        if  !@payroll_current
             @payroll = Payroll.create(end_date: @pay_period_date)
             @employees.each do |e|
                 @payroll.employees << e
             end
+        elsif 
+            @num_days >= 14
+            @pay_period_date = Payroll.last.end_date + 14.days
+            @payroll = Payroll.create(end_date: @pay_period_date) 
+
+        else
+            flash.now[:notice] = "No valid payperiods can be created"
         end
+        
     end
     
+
+
+
     def update
     end
 
@@ -44,15 +57,15 @@ class PayrollsController < ApplicationController
             state_deduction = @employee.state_filing_status
             fed_taxes = fed_tax_calculator(pretax_wage, @employee.federal_filing_allowances)
             state_taxes = state_tax_calculator(pretax_wage, @employee.state_filing_allowances)
-            wage = pretax_wage - (fed_taxes + state_taxes)
-            @check = Check.create(employee_id: num, payperiod: @payperiod, check_name: "#{@employee.first_name} #{@employee.last_name}", check_total: wage)
+            wage = pretax_wage - (fed_taxes.abs + state_taxes.abs)
+            @check = Check.create(employee_id: num, payperiod: @payperiod, check_name: "#{@employee.first_name} #{@employee.last_name}", check_total: wage.round(2), gross_total: pretax_wage.round(2), fed_taxes: fed_taxes.abs, state_taxes: state_taxes.abs)
         end
         redirect_to payroll_path
     end
 
 private
     def wage_calculate(rate, reg_hours, ovr_hours)
-        rate * (reg_hours + (ovr_hours * 1.5))
+        ((rate * reg_hours) + ((rate * 1.5) * ovr_hours)).round(2)
     end
     
     def fed_tax_calculator(wage, allowances)
@@ -60,38 +73,38 @@ private
         base_tax = 0
         percent = 0
         allowance = 4050.80 * allowances
-        taxable = (wage * 26)-allowances
+        taxable = (wage * 26) - allowance
 
         if taxable <= 9325
             base_tax = 0
             percent = 0.1
             excess = wage
         elsif taxable < 37_950
-            base_tax = 932.5
+            base_tax = 932.5/26
             percent = 0.15
-            excess = wage - 9325
+            excess = (wage - base_tax).abs
         elsif taxable < 91_900
-            base_tax = 5226.25
+            base_tax = 5226.25/26
             percent = 0.25
-            excess = (wage - 5226.25).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 191_650
-            base_tax = 18_713.75
+            base_tax = 18_713.75/26
             percent = 0.28
-            excess = (wage - 18_713.75).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 416_700
-            base_tax = 46_643.75
+            base_tax = 46_643.75/26
             percent = 0.33
-            excess = (wage - 46_643.75).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 418_400
-            base_tax = 120_910.25
+            base_tax = 120_910.25/26
             percent = 0.35
-            excess = (wage - 120_910.25).abs
+            excess = (wage - base_tax).abs
         else taxable >= 418_400
-            base_tax = 121_505.25
+            base_tax = 121_505.25/26
             percent = 0.396
-            excess = (wage - 121_505.25).abs
+            excess = (wage - base_tax).abs
         end
-        fed_taxes = base_tax + (excess * percent)
+        fed_taxes = (base_tax + (excess * percent)).round(2)
     end
 
     
@@ -101,50 +114,45 @@ private
         base_tax = 0
         percent = 0
         allowance = 4050.80 * allowances
-        taxable = (wage * 26)- allowances
+        taxable = (wage * 26)- allowance
 
         if taxable <= 8015
             base_tax = 0
             percent = 0.01
             excess = wage
         elsif taxable < 19_001
-            base_tax = 80.15
+            base_tax = 80.15/26
             percent = 0.02
-            excess = wage - 8015
+            excess = (wage - base_tax).abs
         elsif taxable < 29_989
-            base_tax = 299.87
+            base_tax = 299.87/26
             percent = 0.04
-            excess = (wage - 299.87).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 41_629
-            base_tax = 739.39
+            base_tax = 739.39/26
             percent = 0.06
-            excess = (wage - 739.39).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 52_612
-            base_tax = 1437.79
+            base_tax = 1437.79/26
             percent = 0.08
-            excess = (wage - 52_612).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 268_750
-            base_tax = 2316.43
+            base_tax = 2316.43/26
             percent = 0.093
-            excess = (wage - 2316.43).abs
+            excess = (wage - base_tax).abs
         elsif taxable >= 322_499
-            base_tax = 22_417.26
+            base_tax = 22_417.26/26
             percent = 0.13
-            excess = (wage - 22_417.26).abs
+            excess = (wage - base_tax).abs
         elsif taxable < 537_498
-            base_tax = 27_953.41
+            base_tax = 27_953.41/26
             percent = 0.113
-            excess = (wage - 27_953.41).abs
+            excess = (wage - base_tax).abs
         else taxable >= 537_498
-            base_tax = 52_248.3
+            base_tax = 52_248.3/26
             percent = 0.123
-            excess = (wage - 52_248.3).abs
+            excess = (wage - base_tax).abs
         end
-        state_taxes = base_tax + (excess * percent)
+        state_taxes = (base_tax + (excess * percent)).round(2)
     end
-    
-    
-
 end
-
-

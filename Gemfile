@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "aws-sdk", "~> 2"
 gem "paperclip", "~> 5.0.0"
 gem "figaro"
+gem 'numbers_in_words'
 
 
 # Use Capistrano for deployment

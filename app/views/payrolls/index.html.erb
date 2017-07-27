@@ -1,22 +1,10 @@
-<nav>
-  <div class="nav-wrapper">
-    <form>
-      <div class="input-field">
-        <input id="search" type="search" required>
-        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-        <i class="material-icons">close</i>
-      </div>
-    </form>
-  </div>
-</nav>
-<div>
-</div>
+
 
 <h2 class="col s4 center-align"> Payroll History </h2>
 <hr width=85%>
 <div class="container">
   <table class = "centered highlight responsive-table">
-    <thead class= "">
+    <thead>
       <tr>
           <th> Period end date </th>
           <th> Pay Date </th>
@@ -29,14 +17,12 @@
         <tbody>
             <tr>
                 <td><%=link_to payroll_path(info) do%>
-                      <%=content_tag :span, info.end_date, :class=>"btn-flat"%>
+                      <%=content_tag :span, info.end_date.strftime('%m-%d-%y'), :class=>"btn-flat hover"%>
                     <%end%></td>
-                <td><%=@pay_date %></td>
-                <td></td>
+                <td><%=@pay_date.strftime('%m-%d-%y') %></td>
                 <td><%=check_count(info)%></td>
                 <td><%=check_adder(info)%></td>
-                <td><%=check_adder(info)%></td>
-                <td> </td>
+                <td><%=gross_check(info)%></td>
             </tr>
         </tbody>
       <% end %>
