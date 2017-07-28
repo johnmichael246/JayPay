@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :checks, only: [:index, :new, :create, :show]
   resources :employees
-  resources :todos, except: [:edit, :patch, :show]
+  resources :todos
   resources :payrolls, only: [:new, :index, :show]
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/payrolls/:id/payperiods', to: 'payrolls#show', as: 'pay_period'
 
   get '/login', to: 'sessions#new'
+
+  get '/dummy', to: 'sessions#destroy'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

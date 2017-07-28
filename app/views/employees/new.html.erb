@@ -4,10 +4,10 @@
 <%= form_for @employee do |f| %>
     <% if @employee.errors.any? %>
         <div class="error-messages center-align">
-            <h3>Uh-Oh!</h3>
+            <h4>Please Correct the following errors</h4>
             <ul>
                 <% for message in @employee.errors.messages %>
-                    <li><%= message %></li>
+                    <li class="small-error"><%= message %></li>
                 <% end %>
             </ul>
         </div>

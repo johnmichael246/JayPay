@@ -92,3 +92,11 @@ a {
 .opals {
     opacity:.6;
 }
+.small-error {
+    font-size:1.em;
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
