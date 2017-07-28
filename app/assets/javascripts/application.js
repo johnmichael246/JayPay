@@ -15,17 +15,17 @@
 
 $(document).ready(function(){
   $('ul.tabs').tabs();
-  });
+});
 
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
+$(document).ready(function(){
+  $('.modal').modal();
+});
 
-  $(document).ready(function() {
+$(document).ready(function() {
   $('#submitButton').on('click', function() { $('#Payroll_form').submit(); });
 });
 
-  $(document).ready(function() {
+$(document).ready(function() {
   $('#warndelete').on('click', function() { $('#Payroll_form').submit(); });
 });
 
