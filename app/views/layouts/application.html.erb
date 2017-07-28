@@ -10,25 +10,25 @@
   </head>
   <body class="cyan lighten-5">
   <% if current_user %>
-    <div class="nav-wrapper blue-grey accent-2">
-    <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo"></a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><%=link_to "To-Do", todos_path %></li>
-        <li><%=link_to "Payroll", payrolls_path%> </li>
-        <li><%=link_to "Forms" %> </li>
-        <li><%= link_to "Employees", employees_path %></li>
-      </ul>
-      <ul id="nav-mobile" class="right">
-        <li> Welcome, <%= current_user.first_name.capitalize %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;</li>
-        <li class="right"> <%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>   
-      </ul>
-    </div>
+    <nav>
+      <div class="nav-wrapper blue-grey accent-2">
+        <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo"></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><%=link_to "To-Do", todos_path %></li>
+          <li><%=link_to "Payroll", payrolls_path%> </li>
+          <li><%=link_to "Forms" %> </li>
+          <li><%= link_to "Employees", employees_path %></li>
+        </ul>
+        <ul id="nav-mobile" class="right">
+          <li> Welcome, <%= current_user.first_name.capitalize %> &nbsp;&nbsp;|&nbsp;&nbsp;</li>
+          <li class="right"> <%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>   
+        </ul>
+      </div>
     </nav>
   <% else %>
   <nav>
     <div class="nav-wrapper blue-grey accent-2">
-    <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo right"></a>
+      <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo right"></a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li> <%= link_to 'Log In', login_path %> </li>  
         <li> <%= link_to 'Sign Up', new_user_path %> </li>
