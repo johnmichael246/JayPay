@@ -26,6 +26,7 @@ In the top left corner you will see a sign up button, click and enter al the nec
 ![Imgur](http://i.imgur.com/5RBa0a9.png)
 ![Imgur](http://i.imgur.com/ovDS1c1.png)
 From here, you can edit employees (***Note:*** Employees should **NOT** be deleted in order to preserve their pay and tax history, archive them instead!), search for a specific employee, and navigate through the app using the top navbar. clicking on the payroll tab will take you to the payroll history view, where you can sort through payroll periods and if its time, process your first payroll!
+![Imgur](http://i.imgur.com/NY2FI5n.png)
 ![Imgur](http://i.imgur.com/o2OJY2T.png)
 
 **4.Next Steps**. 
