@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get '/sessions/dummy', to: 'sessions#destroy'
+
   get '/pages/about', to: 'pages#show_about'
 
   get 'pages/contact', to: 'pages#show_contact'
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
 
-  get '/dummy', to: 'sessions#destroy'
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
