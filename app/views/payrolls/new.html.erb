@@ -17,9 +17,9 @@
                 <tr>
                     <td> <%= info.first_name.capitalize %> </td>
                     <td> <%= info.last_name.capitalize %> </td>
-                    <td> <%= number_field_tag "[payroll][#{info.id}][reg_hours]" %></td>
+                    <td> <%= number_field_tag "[payroll][#{info.id}][reg_hours]", nil, :step => 0.1%> </td>
                     <td> $<%=((info.rate) *1.0) %> </td>
-                    <td> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]" %></td>
+                    <td> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]", nil, :step => 0.1%> </td>
                     <td> $<%=((info.rate) *1.5) %></td>
                 </tr>
         <% end %> 
@@ -41,6 +41,6 @@
       <p>Submissions cannot be updated once submitted, please make sure that all hours are correct.</p>
     </div>
     <div class="modal-footer">
-    <button id="submitButton" class="modal-action modal-close waves-effect waves-green btn-flat">Confirm Payroll Submittal</button>
+        <button id="submitButton" class="modal-action modal-close waves-effect waves-green btn-flat">Confirm Payroll Submittal</button>
     </div>
-  </div>
+</div>
