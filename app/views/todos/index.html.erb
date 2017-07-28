@@ -21,7 +21,8 @@
                 <tr>
                     <td><%=list.created_at.strftime('%m.%d.%Y') %></td>
                     <td class="truncate"> <%= list.list %> </td> 
-                    <td> <%=link_to list, method: :delete, :class=>"waves-effect waves-light btn-flat imagination" do %>    <i class="material-icons">delete_forever</i> 
+                    <td> <%=link_to list, :class=>"waves-effect waves-light btn-flat imagination", method: :delete,  do %>
+                            <i class="material-icons">delete_forever</i> 
                         <%end%>
                     </td>
                 </tr>

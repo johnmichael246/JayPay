@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get '/sessions/dummy', to: 'sessions#destroy'
+  get '/sessions/exit', to: 'sessions#destroy'
 
   get '/pages/about', to: 'pages#show_about'
 
