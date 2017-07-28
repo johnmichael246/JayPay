@@ -18,7 +18,8 @@ In this App makes use of Materlialize's grid system and CCS library.
 
 **3.GETTING STARTED** 
 Click 
-[Here](https://jaypayroll.herokuapp.com/) to open the application once youve finished the readMe and are ready to process your first payroll.  
+[Here](https://jaypayroll.herokuapp.com/) to open the application once youve finished the readMe and are ready to process your first payroll. 
+View our User Stories [Here](https://trello.com/b/rhBG4IwX/jaypay-userstories)! 
   
 First things first, you have to sign up as a user to be enabled to move through the site. Normally your company's administrator(or you yourself) will sign you up, but for now you can sign up to take a look around the site and see is functionality. 
 ![Imgur](http://i.imgur.com/33EMFWy.png)
