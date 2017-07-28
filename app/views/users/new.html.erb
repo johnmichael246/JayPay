@@ -6,7 +6,7 @@
         <%= form_for @user do |f| %>
           <% if @user.errors.any? %>
             <div class="error_messages">
-              <h4>Form is invalid</h4>
+              <h4><strong>Form is invalid<strong></h4>
               <ul>
                 <% for message in @user.errors.messages %>
                   <li class="error-messages"><%= message %></li>
@@ -35,7 +35,7 @@
             <%= f.password_field :password_confirmation %>
           </div>
           <div>
-            <%= f.submit link_to employees_path, "Sign Up!", :class=> "btn cyan accent-3" %>
+            <%= f.submit link_to "Sign Up!", employees_path  :class=> "btn cyan accent-3" %>
           </div>
         <% end %>
       </div>
