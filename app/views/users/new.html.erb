@@ -1,36 +1,48 @@
-<h1 class="margin">Sign Up</h1>
-<div class="container">
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h4>Form is invalid</h4>
-      <ul>
-        <% for message in @user.errors.messages %>
-          <li class="error-messages"><%= message %></li>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col s6 login-border-right">
+      <div class="col s12">
+        <h1 class="margin">Sign Up</h1>
+        <%= form_for @user do |f| %>
+          <% if @user.errors.any? %>
+            <div class="error_messages">
+              <h4>Form is invalid</h4>
+              <ul>
+                <% for message in @user.errors.messages %>
+                  <li class="error-messages"><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="input-field">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name %>
+          </div>
+          <div class="input-field">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name %>
+          </div>
+          <div class="input-field">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+          </div>
+          <div class="input-field">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+          <div class="input-field">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div>
+            <%= f.submit link_to employees_path, "Here", :class=> "btn cyan accent-3" %>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-  <div class="input-field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+  <div class="col s6">
+    <div class="img-container">
+      <img class="welcome-image" src="http://i.imgur.com/lY0DMSb.png" alt="#">
+    </div>
   </div>
-  <div class="input-field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="input-field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div class="input-field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="input-field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div><%= f.submit "Sign Up!", :class=> "btn" %></div>
-<% end %>
 </div>

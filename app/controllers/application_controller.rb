@@ -21,31 +21,18 @@ class ApplicationController < ActionController::Base
     def gross_check(payroll)
         @gross_check_total = 0
         payroll.payperiods.each do |payperiod|
-          payperiod.checks.each do |check|
-            @gross_check_total = check.gross_total
-        end
+          @gross_check_total += payperiod.check.gross_total if payperiod.check
       end
-      return @gross_total
+      @gross_check_total
     end
 
     def check_adder(payroll)
       @check_total = 0
       payroll.payperiods.each do |payperiod|
-        payperiod.checks.each do |check|
-          @check_total += check.check_total
-        end
+        @check_total += payperiod.check.check_total if payperiod.check
       end
-      return @check_total
+      @check_total
     end
-
-    
-    def check_count(payroll)
-      @num_checks = 0
-      payroll.payperiods.each do |payperiod|
-        @num_checks += payperiod.checks.count
-      end
-      return @num_checks
-    end
-    
+  
 
 end

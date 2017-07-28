@@ -15,29 +15,25 @@ class PayrollsController < ApplicationController
     end
     
     def new
+        new_payroll = false
         @employees = Employee.where(status: true)
         @initialize_date = Date.new(2017,6,25)
         @num_days = (Date.today - @initialize_date).to_i % 14
         @pay_period_date = Date.today - @num_days.days
-        @pay_date = @pay_period_date + 5.days
         @payroll = Payroll.find_by(end_date: @pay_period_date)
-        @payroll_current = Payroll.last.payperiods
-
         # generate a new payroll
-        if  !@payroll_current
+        unless @payroll
+            new_payroll = true
             @payroll = Payroll.create(end_date: @pay_period_date)
             @employees.each do |e|
-                @payroll.employees << e
+                @payroll.payperiods.create(employee: e)
             end
-        elsif 
-            @num_days >= 14
-            @pay_period_date = Payroll.last.end_date + 14.days
-            @payroll = Payroll.create(end_date: @pay_period_date) 
-
-        else
-            flash.now[:notice] = "No valid payperiods can be created"
         end
-        
+        if new_payroll
+            render :new
+        else
+            redirect_to payroll_path(@payroll)
+        end
     end
     
 
@@ -50,15 +46,20 @@ class PayrollsController < ApplicationController
         # saves the payroll into DB
         payroll = params[:payroll]
         payroll.each do |num, hours|
-            @payperiod = Payperiod.create(employee_id: num, payroll_id: params[:id], reg_hours: hours[:reg_hours], ovr_hours: hours[:ovr_hours])
-            @employee = Employee.find(num)
-            pretax_wage = wage_calculate(@employee.rate, hours[:reg_hours].to_f, hours[:ovr_hours].to_f)
-            fed_deduction = @employee.federal_filing_status
-            state_deduction = @employee.state_filing_status
-            fed_taxes = fed_tax_calculator(pretax_wage, @employee.federal_filing_allowances)
-            state_taxes = state_tax_calculator(pretax_wage, @employee.state_filing_allowances)
-            wage = pretax_wage - (fed_taxes.abs + state_taxes.abs)
-            @check = Check.create(employee_id: num, payperiod: @payperiod, check_name: "#{@employee.first_name} #{@employee.last_name}", check_total: wage.round(2), gross_total: pretax_wage.round(2), fed_taxes: fed_taxes.abs, state_taxes: state_taxes.abs)
+            @payperiod = Payperiod.find_by(employee_id: num, payroll_id: params[:id])
+            unless hours[:reg_hours] == ''
+                @payperiod.reg_hours = hours[:reg_hours]
+                @payperiod.ovr_hours = hours[:ovr_hours]
+                @payperiod.save
+                @employee = Employee.find(num)
+                pretax_wage = wage_calculate(@employee.rate, hours[:reg_hours].to_f, hours[:ovr_hours].to_f)
+                fed_deduction = @employee.federal_filing_status
+                state_deduction = @employee.state_filing_status
+                fed_taxes = fed_tax_calculator(pretax_wage, @employee.federal_filing_allowances)
+                state_taxes = state_tax_calculator(pretax_wage, @employee.state_filing_allowances)
+                wage = pretax_wage - (fed_taxes.abs + state_taxes.abs)
+                @check = Check.create(employee_id: num, payperiod: @payperiod, check_name: "#{@employee.first_name} #{@employee.last_name}", check_total: wage.round(2), gross_total: pretax_wage.round(2), fed_taxes: fed_taxes.abs, state_taxes: state_taxes.abs)
+            end
         end
         redirect_to payroll_path
     end

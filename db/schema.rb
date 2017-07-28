@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726181527) do
+ActiveRecord::Schema.define(version: 20170727231249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20170726181527) do
     t.string "street_address"
     t.string "city"
     t.string "state"
-    t.integer "zipcode"
+    t.string "zipcode"
     t.string "gender"
-    t.integer "id_number"
+    t.string "id_number"
     t.string "admin", default: "No"
     t.boolean "status", default: true
     t.date "hire_date"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 20170726181527) do
     t.integer "rate", default: 12
     t.string "paid_by", default: "check"
     t.string "social_security_number"
-    t.integer "federal_filing_status"
+    t.string "federal_filing_status"
     t.integer "federal_filing_allowances"
-    t.integer "state_filing_status"
+    t.string "state_filing_status"
     t.integer "state_filing_allowances"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

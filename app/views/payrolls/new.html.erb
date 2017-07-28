@@ -5,7 +5,7 @@
     <table class = "centered responsive-table">
         <thead>
             <tr>
-                <th></th>
+                
                 <th> First Name</th>
                 <th> Last Name</th>
                 <th colspan="2"> Regular Hours</th>
@@ -15,8 +15,8 @@
         <% @employees.each do |info| %>
             <tbody>
                 <tr>
-                    <td> <%= info.first_name %> </td>
-                    <td> <%= info.last_name %> </td>
+                    <td> <%= info.first_name.capitalize %> </td>
+                    <td> <%= info.last_name.capitalize %> </td>
                     <td> <%= number_field_tag "[payroll][#{info.id}][reg_hours]" %></td>
                     <td> $<%=((info.rate) *1.0) %> </td>
                     <td> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]" %></td>
@@ -41,6 +41,6 @@
       <p>Submissions cannot be updated once submitted, please make sure that all hours are correct.</p>
     </div>
     <div class="modal-footer">
-    <button id="submitButton" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</button>
+    <button id="submitButton" class="modal-action modal-close waves-effect waves-green btn-flat">Confirm Payroll Submittal</button>
     </div>
   </div>

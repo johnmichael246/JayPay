@@ -7,18 +7,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="icon" href="http://i.imgur.com/HWlHARft.png" type="image/gif" sizes="16x16">
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js"></script>
-  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="cyan lighten-5">
   <% if current_user %>
         <nav>
     <div class="nav-wrapper blue-grey accent-2">
@@ -28,7 +20,6 @@
         <li><%=link_to "Payroll", payrolls_path%> </li>
         <li><%=link_to "Forms" %> </li>
         <li><%= link_to "Employees", employees_path %></li>
-        <li><a href="#">Set Up</a></li>
       </ul>
       <ul id="nav-mobile" class="right">
         <li> Welcome, <%= current_user.first_name.capitalize %>
@@ -52,5 +43,13 @@
   </nav>
   <% end %>
     <%= yield %>
+
+    <!-- JS Libraries -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </body>
 </html>

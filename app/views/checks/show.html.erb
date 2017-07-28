@@ -14,8 +14,8 @@
         <% @employees.each do |info| %>
             <tbody>
                 <tr>
-                    <td> <%= info.first_name %> </td>
-                    <td> <%= info.last_name %> </td>
+                    <td> <%= info.first_name.capitalize %> </td>
+                    <td> <%= info.last_name.capitalize %> </td>
                     <td colspan="1"> <%= number_field_tag "[payroll][#{info.id}][reg_hours]" %></td>
                     <td> $<%= (info.rate) *1.0 %> </td>
                     <td colspan="1"> <%= number_field_tag "[payroll][#{info.id}][ovr_hours]" %></td>
@@ -23,7 +23,7 @@
                 </tr>
         <% end %>
         <tr> 
-            <td colspan="6"><%=submit_tag "Submit Payroll", :class=>"btn-right", data: {confirm: "Payroll cannot be changed once processed, please confirm that all information is correct before proceeding"} %> </td>
+            <td colspan="6"><%=submit_tag "Submit Payroll", :class=>"btn-right cyan accent-3", data: {confirm: "Payroll cannot be changed once processed, please confirm that all information is correct before proceeding"} %> </td>
             
         </tr>
             </tbody>

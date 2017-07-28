@@ -1,6 +1,6 @@
 
 <h2 class="col s4 margin"> Add Employee </h2>
-<hr width=85%>
+<hr width =85%>
 <%= form_for @employee do |f| %>
     <% if @employee.errors.any? %>
         <div class="error-messages center-align">
@@ -14,10 +14,10 @@
     <% end %>
     <div class="row">
         <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s3 offset-s1"><a href="#t1" class="active">Information</a></li>
-                <li class="tab col s3"><a href="#t2">Employment</a></li>
-                <li class="tab col s3"><a href="#t3">Taxes & Exemptions</a></li>
+            <ul class="tabs cyan lighten-5">
+                <li class="tab col s3 offset-s1 black-navigator"><a href="#t1" class="active">Information</a></li>
+                <li class="tab col s3 black-navigator"><a href="#t2">Employment</a></li>
+                <li class="tab col s3 black-navigator"><a href="#t3">Taxes & Exemptions</a></li>
             </ul>
         </div>
         <div id="t1" class="col s12">
@@ -46,17 +46,18 @@
                 <%= f.label :zipcode,:class=>"active" %>
                 <%= f.text_field :zipcode %>
             </div>
+        
             <div class="input-field col s2">
-                <%= f.label :state,:class=>"active" %>
-                <%= f.select :state, options_for_select(["CA","OR","AZ","NY"]) %>
+                <%= f.label :state, :class=>"active"%>
+                <%= f.select :state, options_for_select(["CA","OR","AZ","NY"], params[:state]) %>
             </div>
             <div class="input-field offset-s4 col s2">
-                    <%= f.label :gender,:class=>"active" %>
-                    <%= f.select :state, options_for_select(["Male","Female"]) %>
+                <%= f.label :gender, :class=>"active" %>
+                <%= f.select :gender, options_for_select([["Male"],["Female"]], params[:gender]) %>
             </div>
             <div class="input-field col s2 offset-s1">
                 <%= f.label :birthday,:class=>"active datepicker" %>
-                <%= f.text_field :birthday %>
+                <%= f.date_field :birthday %>
             </div>
         </div>
         <div id="t2" class="col s12">
@@ -80,42 +81,45 @@
         </div>
         <div id="t3" class="col s12">
             </br>
-            <div class="input-field col s2 offset-s3">
-                <%= f.label :jobtype,:class=>"active" %>
-                <%= f.select :jobtype, options_for_select(["General Manager","Manager","PIC","Bartender","Server","Host","Expo","Driver"]) %>
+            <div class="row">
+                <div class="input-field col s2 offset-s3">
+                    <%= f.label :jobtype, :class=>"active" %>
+                    <%= f.select :jobtype, options_for_select([["General Manager"],["Manager"],["PIC"],["Bartender"],["Server"],["Host"],["Expo"],["Driver"]], params[:jobtype]) %>
+                </div>
+                <div class="input-field col s2">
+                    <%= f.label :rate,:class=>"active" %>
+                    <%= f.number_field :rate, :value =>(number_with_precision(f.object.rate, :precision =>2) || 12.00) %>
+                </div>
+                <div class="input-field col s2">
+                    <%= f.label :paid_by,:class=>"active" %>
+                    <%= f.text_field :paid_by %>
+                </div>
+                <div class="input-field col s2 offset-s3">
+                    <%= f.label :social_security_number,:class=>"active" %>
+                    <%= f.number_field :social_security_number %>
+                </div>
+                <div class="input-field col s2">
+                    <%= f.label :federal_filing_status, :class=>"active" %>
+                    <%= f.select :federal_filing_status, options_for_select(["Single","Married","Divorced"]) %>
+                </div>
+                <div class="input-field col s2">
+                    <%= f.label :federal_filing_allowances,:class=>"active" %>
+                    <%= f.number_field :federal_filing_allowances %>
+                </div>
+                <div class="input-field col s2 offset-s5">
+                    <%= f.label :state_filing_status,:class => "active" %>
+                    <%= f.select :state_filing_status, options_for_select(["Single","Married","Seperated","Divorced","Widowed"], 'Single') %>
+                </div>
+                <div class="input-field col s2">
+                    <%= f.label :state_filing_allowances,:class=>"active" %>
+                    <%= f.number_field :state_filing_allowances %>
+                </div>
+                <div class= "col s2 pull-s4">
+                <br>
+                    <%=button_tag "Add", :class=>"waves-effect waves-light btn cyan darken-3", :type=>"Submit" %> 
+                </div>
             </div>
-            <div class="input-field col s2">
-                <%= f.label :rate,:class=>"active" %>
-                <%= f.number_field :rate, :value =>(number_with_precision(f.object.rate, :precision =>2) || 12.00) %>
-            </div>
-            <div class="input-field col s2">
-                <%= f.label :paid_by,:class=>"active" %>
-                <%= f.text_field :paid_by %>
-            </div>
-            <div class="input-field col s2 offset-s3">
-                <%= f.label :social_security_number,:class=>"active" %>
-                <%= f.number_field :social_security_number %>
-            </div>
-            <div class="input-field col s2">
-                <%= f.label :federal_filing_status,:class=>"active" %>
-                <%= f.number_field :federal_filing_status %>
-            </div>
-            <div class="input-field col s2">
-                <%= f.label :federal_filing_allowances,:class=>"active" %>
-                <%= f.number_field :federal_filing_allowances %>
-            </div>
-            <div class="input-field col s2 offset-s5">
-                <%= f.label :state_filing_status,:class=>"active" %>
-                <%= f.number_field :state_filing_status %>
-            </div>
-            <div class="input-field col s2">
-                <%= f.label :state_filing_allowances,:class=>"active" %>
-                <%= f.number_field :state_filing_allowances %>
-            </div>
-            <div class= "col s2 pull-s4">
-            </br></br></br></br>
-                <%=button_tag "Add", :class=>"waves-effect waves-light btn", :type=>"Submit" %> 
-            </div>
+                
         </div>
     </div>
 <%end%>

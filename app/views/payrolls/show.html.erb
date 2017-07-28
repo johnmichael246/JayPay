@@ -15,15 +15,21 @@
         </tr>
     </thead>
         <tbody>
-          <% @payroll.checks.each do |info| %>
+          <% @payroll.payperiods.each do |info| %>
           <tr>
-            <td> <%=link_to "View", payperiod_path(info.id), :class=>"btn" %></td>
-            <td> <%=info.id%></td>
-            <td> <%= info.check_name %> </td>
-            <td> $<%= info.gross_total %> </td>
-            <td> $<%= info.check_total %> </td>
-            <td> $<%= info.fed_taxes %> </td>
-            <td> $<%= info.state_taxes %> </td>
+            <% if info.check %>
+              <td> <%=link_to "View", payperiod_path(info.id), :class=>"btn" %></td>
+              <td> <%= info.check.id%></td>
+              <td> <%= info.check.check_name %> </td>
+              <td> $<%= info.check.gross_total %> </td>
+              <td> $<%= info.check.check_total %> </td>
+              <td> $<%= info.check.fed_taxes %> </td>
+              <td> $<%= info.check.state_taxes %> </td>
+            <% else %>
+              <td colspan="2"></td>
+              <td><%= "#{info.employee.first_name} #{info.employee.last_name}" %></td>
+              <td colspan="4">No Hours Reported</td>
+            <% end %>
           </tr>
         <% end %>
         </tbody>

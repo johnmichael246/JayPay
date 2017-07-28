@@ -8,7 +8,7 @@ end
 
 def index
     @prid = params[:payroll_id]
-    if (prid)
+    if (@prid)
         Check.find({payroll_id:prid})
     else
         @checks = Check.where(@current_payroll)

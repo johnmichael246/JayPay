@@ -1,6 +1,25 @@
-
-
-<h2 class="col s4 center-align"> Payroll History </h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col s6">
+      <div class="col s12">
+        <h2 class="col offset-s2"> Payroll History </h2>
+      </div>
+    </div>
+    <div class="col s6">
+        <nav>
+          <div class="nav-wrapper">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" name="search" class="cyan accent-3 opals" required>
+                  <label class="label-icon" for="search"><i class="material-icons">Search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+    </div>
+  </div>
+</div>
 <hr width=85%>
 <div class="container">
   <table class = "centered highlight responsive-table">
@@ -13,20 +32,21 @@
           <th> Gross Earnings </th>
       </tr>
     </thead>
-      <% @payrolls.each do |info| %>
+      <% @payrolls.limit(10).each do |info| %>
         <tbody>
             <tr>
                 <td><%=link_to payroll_path(info) do%>
                       <%=content_tag :span, info.end_date.strftime('%m-%d-%y'), :class=>"btn-flat hover"%>
                     <%end%></td>
                 <td><%=@pay_date.strftime('%m-%d-%y') %></td>
-                <td><%=check_count(info)%></td>
+                <td><%=info.payperiods.count%></td>
                 <td><%=check_adder(info)%></td>
                 <td><%=gross_check(info)%></td>
             </tr>
         </tbody>
       <% end %>
-        <%=link_to "Start Payroll", new_payroll_path, :class=>"waves-effect waves-light btn right" %>
-
-    </table>
+      <%=link_to "Start Payroll", new_payroll_path, :class=>"waves-effect waves-light btn right" %>
+      <%=link_to "View All", payrolls_path, :class=>"waves-effect waves-light btn" %>
+  </table>
+</div>
 </div>
