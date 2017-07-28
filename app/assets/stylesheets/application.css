@@ -100,3 +100,11 @@ a {
   opacity: 0;
   transition: visibility 0s 2s, opacity 2s linear;
 }
+.patdown {
+    padding-top: 8%;
+    margin: 0 auto;
+    text-align: center;   
+}
+.about-padding {
+    padding-top: 4%;
+}
