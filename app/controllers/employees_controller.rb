@@ -43,6 +43,7 @@ before_action :authorize
     end
 
     def destroy
+        @employee = Employee.find(params[:id])
         @employee.destroy
         redirect_to employees_path
     end

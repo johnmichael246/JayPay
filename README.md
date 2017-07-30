@@ -13,8 +13,10 @@ This application was built using;
 **-** CSS3
 **-** Ruby on Rails
 **-** JQuery
+**-** 
+**-** JQuery
 
-In this App makes use of Materlialize's grid system and CCS library.  
+This App makes use of Materlialize's grid system and CCS library.  
 
 **3.GETTING STARTED** 
 Click 

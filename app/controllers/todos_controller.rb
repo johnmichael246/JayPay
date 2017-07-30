@@ -29,7 +29,7 @@ class TodosController < ApplicationController
     def destroy
         @todo = Todo.find(params[:id])
         @todo.destroy
-        redirect_to todos_path
+        redirect_to :action=>'index'
     end
     
     def show
