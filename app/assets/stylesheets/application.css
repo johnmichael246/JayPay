@@ -117,3 +117,8 @@ a {
 .center-text {
     text-align: center;
 }
+@media screen and (max-width:600px) {
+    .mobile {
+        text-align:center;
+    }
+}
