@@ -12,9 +12,6 @@ Employee.destroy_all
 
 
 
-
-
-
 Employee.create([
     {first_name:"John", middle_i:"M", last_name:"Solis", street_address:"22 Faclon Ave", city:"Long Beach",state:"CA", zipcode:"90802", gender:"Male", id_number:"1001", hire_date:"2016-12-30",workers_comp_class:"restaurant", work_location:"Los Angeles", birthday:"10-08-1991", jobtype:"General Manager", rate:21.00, social_security_number:"123121234", federal_filing_status:"single", federal_filing_allowances:"1",state_filing_status:"single", state_filing_allowances:1},
     {first_name:"James", middle_i:"P", last_name:"Hawkins", street_address:"2442 Faclon Ave", city:"Hermosa Beach",state:"CA", zipcode:"90254", gender:"Male", id_number:"1002", hire_date:"2017-12-30",workers_comp_class:"office", work_location:"Los Angeles", birthday:"09-08-1996", jobtype:"Manager", rate:18.00, social_security_number:"123221234", federal_filing_status:"single", federal_filing_allowances:1,state_filing_status:"single", state_filing_allowances:1},

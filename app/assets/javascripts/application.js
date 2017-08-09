@@ -16,7 +16,9 @@
 $(document).ready(function(){
   $('ul.tabs').tabs();
 });
-
+$(document).ready(function() {
+  $('.button-collapse').sideNav();
+});
 $(document).ready(function(){
   $('.modal').modal();
 });

@@ -14,13 +14,8 @@ class Employee < ApplicationRecord
     validates :federal_filing_status, :state_filing_status, presence: true
     
 
-    def self.search(search)
-        # "name like ?", "%#{search}%"
-        # where("name LIKE ?", "%#{search}")
-        # where("jobtype LIKE ?", "%#{search}")
-        # where("status LIKE ?", "%#{search}")
-        # where(" LIKE ?", "%#{search}")
-        # where("status LIKE ?", "%#{search}")
+    def self.search(query)
+        where("lower(first_name) LIKE lower(?) OR lower(last_name) LIKE lower(?) OR lower(jobtype) LIKE lower(?)" , "%#{query}%" , "%#{query}%" , "%#{query}%")
     end
     
 

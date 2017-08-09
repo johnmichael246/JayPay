@@ -4,9 +4,10 @@ before_action :modify_employee, only: [:show, :edit, :update, :destroy]
 before_action :authorize
 
     def index
-        puts params
+        @employees = Employee.all
+        # puts params
         if params[:search]
-            @employees = Employee.where(:first_name => params[:search]).order("created_at DESC")
+            @employees = Employee.search(params[:search]).order("created_at DESC")
         else
             @employees = Employee.all.order("created_at DESC")
         end

@@ -111,3 +111,9 @@ a {
 .about-padding {
     padding-top: 4%;
 }
+.plain {
+    background-color: transparent;
+}
+.center-text {
+    text-align: center;
+}

@@ -4,6 +4,8 @@ class TodosController < ApplicationController
     def index
         @todos=Todo.all
         @todo = Todo.new
+        # @todo = Todo.find(params[:id])
+        
     end
 
     def new
@@ -29,7 +31,7 @@ class TodosController < ApplicationController
     def destroy
         @todo = Todo.find(params[:id])
         @todo.destroy
-        redirect_to :action=>'index'
+        redirect_back(fallback_location: root_path)
     end
     
     def show

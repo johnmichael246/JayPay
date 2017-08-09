@@ -9,11 +9,12 @@
     <link rel="icon" href="http://i.imgur.com/HWlHARft.png" type="image/gif" sizes="16x16">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body class="cyan lighten-5">
+  <header>
   <% if current_user %>
     <nav>
       <div class="nav-wrapper blue-grey accent-2">
         <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo"></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li><%=link_to "To-Do", todos_path %></li>
           <li><%=link_to "Payroll", payrolls_path%> </li>
@@ -24,12 +25,23 @@
           <li> Welcome, <%= current_user.first_name.capitalize %> &nbsp;&nbsp;|&nbsp;&nbsp;</li>
           <li class="right"> <%= link_to 'Log Out', session_path('exit'), method: :delete %></li>   
         </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><%=link_to "To-Do", todos_path %></li>
+          <li><%=link_to "Payroll", payrolls_path%> </li>
+          <li><%=link_to "Forms" %> </li>
+          <li><%= link_to "Employees", employees_path %></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li> Welcome, <%= current_user.first_name.capitalize %> &nbsp;&nbsp;|&nbsp;&nbsp;</li>
+          <li class="right"> <%= link_to 'Log Out', session_path('exit'), method: :delete %></li>   
+        </ul>
       </div>
     </nav>
   <% else %>
   <nav>
     <div class="nav-wrapper blue-grey accent-2">
       <a href ="http://i.imgur.com/lY0DMSbt.png" class="brand-logo right"></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li> <%= link_to 'Log In', login_path %> </li>  
         <li> <%= link_to 'Sign Up', new_user_path %> </li>
@@ -37,10 +49,35 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li> <a href = "tel:562-325-4291"class="right phone">562-325-4294</a></li>
       </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li> <%= link_to 'Log In', login_path %> </li>  
+        <li> <%= link_to 'Sign Up', new_user_path %> </li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li> <a href = "tel:562-325-4291"class="right phone">562-325-4294</a></li>
+      </ul>
     </div>
   </nav>
   <% end %>
-    <%= yield %>
+  </header>
+
+    <body class="cyan lighten-5">
+
+  <%= yield %>
+  <footer class="page-footer plain">
+    <div class="container center-text">
+      <div class="row">
+        <div class="col s12">
+          <div class="col s6">
+            <a href = "/pages/contact" class="cols3 imagination black-link get-bigger"> Contact Us</a>
+          </div>
+          <div class="col s6">
+            <a href = "/pages/about"class="cols3 imagination black-link get-bigger">About</a>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </footer>
     <!-- JS Libraries -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
